@@ -56,17 +56,17 @@ public class BankApplication {
         client1.addAccount(account1);
         client1.addAccount(account2);
 
-        Client client2 = new Client("Alice", Gender.FEMALE, "Paris");
+        Client client2 = new Client("Alexa", Gender.FEMALE, "Paris");
         Account account3 = new SavingAccount(3, 130);
         Account account4 = new CheckingAccount(4, 50, 20);
         client2.addAccount(account3);
         client2.addAccount(account4);
 
-        Client client3 = new Client("Bob", Gender.MALE, "Amsterdam");
+        Client client3 = new Client("Sam", Gender.MALE, "Berlin");
         Account account5 = new SavingAccount(5, 500);
         client3.addAccount(account5);
 
-        Client client4 = new Client("Eva", Gender.FEMALE, "London");
+        Client client4 = new Client("Emma", Gender.FEMALE, "London");
         Account account6 = new SavingAccount(6, 150);
         client4.addAccount(account6);
 
