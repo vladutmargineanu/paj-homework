@@ -14,6 +14,9 @@ import com.luxoft.bankapp.service.BankReportStreams;
 import com.luxoft.bankapp.service.BankService;
 import com.luxoft.bankapp.service.EmailService;
 
+import java.util.Scanner;
+
+import static com.luxoft.bankapp.utils.Constants.COMMAND;
 import static com.luxoft.bankapp.utils.Constants.STATISTICS;
 
 public class BankApplication {
@@ -27,8 +30,19 @@ public class BankApplication {
 		BankService.printMaximumAmountToWithdraw(bank);
 
 		if (args.length > 0 && args[0].equals(STATISTICS)) {
-			displayBankStatistics(bank);
+
+			Scanner commandLine = new Scanner(System.in);
+
+			while (commandLine.hasNext()) {
+				String command = commandLine.nextLine();
+
+				if (command.equals(COMMAND)) {
+					displayBankStatistics(bank);
+				}
+			}
 		}
+
+		displayBankStatistics(bank);
 
 		closeEmail(bank);
 	}

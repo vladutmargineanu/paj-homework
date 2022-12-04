@@ -5,7 +5,7 @@ import com.luxoft.bankapp.exceptions.EmailException;
 import com.luxoft.bankapp.utils.Queue;
 
 // TODO - Exercise 2 - EmailNotificationListener
-public class EmailService implements Runnable{
+public class EmailService implements Runnable {
     private final Queue<Email> emailQueue = new Queue<>();
     private final Thread currentThread;
     private boolean isEmailServiceClosed = false;
