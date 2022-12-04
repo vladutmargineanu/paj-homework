@@ -13,7 +13,7 @@ import java.util.SortedSet;
 
 import static org.junit.Assert.assertEquals;
 
-public class BankReportStreamsTest {
+public class TestBankReportStreams {
     private final Bank bank = new Bank();
     private BankReportStreams bankReportStreams;
     private Client client1;

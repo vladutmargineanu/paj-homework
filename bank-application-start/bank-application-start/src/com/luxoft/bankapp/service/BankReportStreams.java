@@ -1,6 +1,5 @@
 package com.luxoft.bankapp.service;
 
-import com.beust.ah.A;
 import com.luxoft.bankapp.domain.Account;
 import com.luxoft.bankapp.domain.Bank;
 import com.luxoft.bankapp.domain.CheckingAccount;
@@ -32,6 +31,7 @@ public class BankReportStreams {
                 .map(Account::getBalance)
                 .reduce(0.0, Double::sum);
     }
+
     public double getTotalSumInAccounts(Bank bank) {
         return bank.getClients().stream().
                 map(BankReportStreams::getClientTotalSum).
