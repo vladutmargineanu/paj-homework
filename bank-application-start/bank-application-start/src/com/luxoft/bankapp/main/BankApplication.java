@@ -12,6 +12,7 @@ import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
 import com.luxoft.bankapp.service.BankReport;
 import com.luxoft.bankapp.service.BankReportStreams;
 import com.luxoft.bankapp.service.BankService;
+import com.luxoft.bankapp.service.EmailService;
 
 import static com.luxoft.bankapp.utils.Constants.STATISTICS;
 
@@ -28,6 +29,8 @@ public class BankApplication {
 		if (args.length > 0 && args[0].equals(STATISTICS)) {
 			displayBankStatistics(bank);
 		}
+
+		closeEmail(bank);
 	}
 	
 	private static void modifyBank() {
@@ -96,6 +99,10 @@ public class BankApplication {
 		System.out.println(BankReport.getBankCreditSum(bank));
 		System.out.println(BankReport.getCustomerAccounts(bank));
 		System.out.println(BankReport.getClientsByCity(bank));
+	}
+
+	public static void closeEmail(Bank bank) {
+		bank.closeEmailService();
 	}
 
 }
