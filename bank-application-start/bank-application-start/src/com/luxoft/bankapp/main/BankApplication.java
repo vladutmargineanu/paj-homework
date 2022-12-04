@@ -9,10 +9,14 @@ import com.luxoft.bankapp.domain.SavingAccount;
 import com.luxoft.bankapp.exceptions.ClientExistsException;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
+import com.luxoft.bankapp.service.BankReport;
+import com.luxoft.bankapp.service.BankReportStreams;
 import com.luxoft.bankapp.service.BankService;
 
+import static com.luxoft.bankapp.utils.Constants.STATISTICS;
+
 public class BankApplication {
-	
+
 	private static Bank bank;
 	
 	public static void main(String[] args) {
@@ -20,10 +24,14 @@ public class BankApplication {
 		modifyBank();
 		printBalance();
 		BankService.printMaximumAmountToWithdraw(bank);
+
+		if (args.length > 0 && args[0].equals(STATISTICS)) {
+			displayBankStatistics(bank);
+		}
 	}
 	
 	private static void modifyBank() {
-		Client client1 = new Client("John", Gender.MALE);
+		Client client1 = new Client("John", Gender.MALE, "Bucharest");
 		Account account1 = new SavingAccount(1, 100);
 		Account account2 = new CheckingAccount(2, 100, 20);
 		client1.addAccount(account1);
@@ -75,6 +83,19 @@ public class BankApplication {
 				System.out.format("Account %d : %.2f%n", account.getId(), account.getBalance());
 			}
 		}
+	}
+
+	private static void displayBankStatistics(Bank bank) {
+		System.out.format("%nPrint bank statistics for all clients%n");
+
+		System.out.println(BankReport.getNumberOfClients(bank));
+		System.out.println(BankReport.getNumberOfAccounts(bank));
+		System.out.println(BankReport.getClientsSorted(bank));
+		System.out.println(BankReport.getTotalSumInAccounts(bank));
+		System.out.println(BankReport.getAccountsSortedBySum(bank));
+		System.out.println(BankReport.getBankCreditSum(bank));
+		System.out.println(BankReport.getCustomerAccounts(bank));
+		System.out.println(BankReport.getClientsByCity(bank));
 	}
 
 }
