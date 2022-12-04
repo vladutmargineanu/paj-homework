@@ -11,6 +11,7 @@ public interface Constants {
 
     String STATISTICS = "-statistics";
     String COMMAND = "display statistic";
+    String STOP = "stop";
     Client bankSystem = new Client("Bank System", null, null);
     Client bankSystemAdmin = new Client("Bank System Admin", null, null);
 

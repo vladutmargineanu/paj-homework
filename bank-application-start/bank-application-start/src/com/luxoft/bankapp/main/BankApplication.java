@@ -1,26 +1,18 @@
 package com.luxoft.bankapp.main;
 
-import com.luxoft.bankapp.domain.Account;
-import com.luxoft.bankapp.domain.Bank;
-import com.luxoft.bankapp.domain.CheckingAccount;
-import com.luxoft.bankapp.domain.Client;
-import com.luxoft.bankapp.domain.Gender;
-import com.luxoft.bankapp.domain.SavingAccount;
+import com.luxoft.bankapp.domain.*;
 import com.luxoft.bankapp.exceptions.ClientExistsException;
 import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
 import com.luxoft.bankapp.service.BankReport;
 import com.luxoft.bankapp.service.BankReportStreams;
 import com.luxoft.bankapp.service.BankService;
-import com.luxoft.bankapp.service.EmailService;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Scanner;
 
-import static com.luxoft.bankapp.utils.Constants.COMMAND;
-import static com.luxoft.bankapp.utils.Constants.STATISTICS;
+import static com.luxoft.bankapp.utils.Constants.*;
 
 public class BankApplication {
 
@@ -38,8 +30,10 @@ public class BankApplication {
                 String command = commandLine.nextLine();
                 if (command.equals(COMMAND)) {
                     displayBankStatistics(bank);
+                } else if (command.equals(STOP)) {
+                    System.exit(0);
                 } else {
-                    System.out.println("WRONG COMMAND" + "\n" + "Please, try this command: " + COMMAND);
+                    System.out.println("WRONG COMMAND" + "\n" + "Please, try those commands: " + COMMAND + ", " + STOP + ".");
                 }
             }
         }
