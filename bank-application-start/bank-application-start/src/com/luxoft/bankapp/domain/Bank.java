@@ -24,7 +24,10 @@ public class Bank {
     private int debuggedClients = 0;
 
     public Bank() {
-        listeners.add(new PrintClientListener());
+        listeners.add(client -> {
+            System.out.println("Client added: " + client.getName());
+            printedClients++;
+        });
         listeners.add(new EmailNotificationListener());
         listeners.add(new DebugListener());
     }
@@ -59,15 +62,6 @@ public class Bank {
     // TODO - Exercise 1 - Task 1 - encapsulate the clients collections - unmodifiableSet()
     public Set<Client> getClients() {
         return Collections.unmodifiableSet(clients);
-    }
-
-    class PrintClientListener implements ClientRegistrationListener {
-        @Override
-        public void onClientAdded(Client client) {
-            System.out.println("Client added: " + client.getName());
-            printedClients++;
-        }
-
     }
 
     class EmailNotificationListener implements ClientRegistrationListener {
