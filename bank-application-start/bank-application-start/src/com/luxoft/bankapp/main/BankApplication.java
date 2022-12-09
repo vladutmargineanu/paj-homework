@@ -30,7 +30,9 @@ public class BankApplication {
                 String command = commandLine.nextLine();
                 if (command.equals(COMMAND)) {
                     displayBankStatistics(bank);
+                    closeEmail(bank);
                 } else if (command.equals(STOP)) {
+                    closeEmail(bank);
                     System.exit(0);
                 } else {
                     System.out.println("WRONG COMMAND" + "\n" + "Please, try those commands: " + COMMAND + ", " + STOP + ".");
@@ -38,8 +40,8 @@ public class BankApplication {
             }
         }
 
+        // Those methods are never executed
         displayBankStatistics(bank);
-
         closeEmail(bank);
     }
 

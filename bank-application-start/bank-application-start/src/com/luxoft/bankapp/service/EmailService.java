@@ -7,6 +7,10 @@ import com.luxoft.bankapp.utils.Queue;
 // TODO - Exercise 2 - EmailNotificationListener
 public class EmailService implements Runnable {
     private final Queue<Email> emailQueue = new Queue<>();
+    /*
+     * Thread object - the worker - currentThread
+     * The runnable (the job) is the EmailService instance (this)
+     */
     private final Thread currentThread;
     private boolean isEmailServiceClosed = false;
     private int noEmails = 0;
@@ -21,7 +25,7 @@ public class EmailService implements Runnable {
             emailQueue.add(email);
 
             synchronized (emailQueue) {
-                emailQueue.notify();
+                emailQueue.notify();  // notify waiting threads to resume
             }
 
         } else {
@@ -32,7 +36,7 @@ public class EmailService implements Runnable {
     public void close() {
         isEmailServiceClosed = true;
         synchronized (emailQueue) {
-            emailQueue.notify();
+            emailQueue.notify();  // notify waiting threads to resume
         }
 
         try {
@@ -46,6 +50,7 @@ public class EmailService implements Runnable {
     @Override
     public void run() {
         while(true) {
+            // Terminate the thread
             if (isEmailServiceClosed) {
                 return;
             }
@@ -59,7 +64,7 @@ public class EmailService implements Runnable {
 
             synchronized (emailQueue) {
                 try {
-                    emailQueue.wait();
+                    emailQueue.wait();  // give up lock and wait
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

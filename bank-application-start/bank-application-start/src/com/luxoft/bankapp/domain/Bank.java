@@ -92,6 +92,7 @@ public class Bank {
     }
 
     public void closeEmailService() {
+        System.out.println("\n" + "------- CLOSE Email Service ----------" + "\n");
         emailService.close();
     }
 
