@@ -7,9 +7,9 @@ public class OverdraftLimitExceededException extends NotEnoughFundsException {
 
 	public OverdraftLimitExceededException(NotEnoughFundsException e, double overdraft) {
 		super(e.getMessage());
-		this.id = e.id;
-	    this.balance = e.balance;
-	    this.amount = Math.round(amount * 100) / 100d;
+		this.id = e.getId();
+	    this.balance = e.getBalance();
+	    this.amount = Math.round(e.getAmount() * 100) / 100d;
         this.overdraft = overdraft;
     }
 	

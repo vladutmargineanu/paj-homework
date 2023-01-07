@@ -57,7 +57,7 @@ public abstract class AbstractAccount implements Account, Serializable, Cloneabl
 			   return balance;
 		   case CHECKING_ACCOUNT_TYPE:
 			   CheckingAccount checkingAccount = (CheckingAccount)this;
-			  return checkingAccount.balance + checkingAccount.overdraft;
+			  return checkingAccount.balance + checkingAccount.getOverdraft();
 		}
 		
         return 0;
