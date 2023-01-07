@@ -9,25 +9,13 @@ public abstract class AbstractAccount implements Account, Serializable, Cloneabl
 	
 	private static final long serialVersionUID = -2272551373694344386L;
 	
-	public static final int SAVING_ACCOUNT_TYPE = 1;
-	public static final int CHECKING_ACCOUNT_TYPE = 2;
-	
 	private int id;
-	private int type;
 
 	public double balance;
 	
 	public AbstractAccount(int id, double amount) {
 		this.id = id;
 		this.balance = amount;
-	}
-	
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
 	}
 
 	@Override
@@ -50,18 +38,6 @@ public abstract class AbstractAccount implements Account, Serializable, Cloneabl
 		
 		this.balance -= amount;
 	}
-	
-	public double maximumAmountToWithdraw(){
-		switch (type) {
-		   case SAVING_ACCOUNT_TYPE:
-			   return balance;
-		   case CHECKING_ACCOUNT_TYPE:
-			   CheckingAccount checkingAccount = (CheckingAccount)this;
-			  return checkingAccount.balance + checkingAccount.getOverdraft();
-		}
-		
-        return 0;
-    }
 
 	@Override
 	public int getId() {

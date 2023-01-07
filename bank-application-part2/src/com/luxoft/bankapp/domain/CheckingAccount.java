@@ -20,7 +20,6 @@ public class CheckingAccount extends AbstractAccount {
 			throw new IllegalArgumentException("Cannot create an account with a starting negative overdraft");
 		}
 		this.overdraft = overdraft;
-		this.setType(AbstractAccount.CHECKING_ACCOUNT_TYPE);
 	}
 	
 	public CheckingAccount(int id, double amount, double overdraft, Currency currency) {
@@ -30,7 +29,6 @@ public class CheckingAccount extends AbstractAccount {
 		}
 		this.overdraft = overdraft;
 		this.currency = currency;
-		this.setType(AbstractAccount.CHECKING_ACCOUNT_TYPE);
 	}
 
 	public double getOverdraft() {
@@ -57,6 +55,10 @@ public class CheckingAccount extends AbstractAccount {
             throw new OverdraftLimitExceededException(notEnoughFundsException, overdraft);
         }
     }
+
+	public double maximumAmountToWithdraw(){
+		return getBalance() + overdraft;
+	}
 
 	@Override
 	public String toString() {
