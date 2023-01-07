@@ -20,6 +20,7 @@ public class SavingAccount extends AbstractAccount {
 		this.currency = currency;
 	}
 
+	// TODO - Exercise 3 - Eliminate the tagged classes and refactor
 	public double maximumAmountToWithdraw(){
 		return getBalance();
 	}

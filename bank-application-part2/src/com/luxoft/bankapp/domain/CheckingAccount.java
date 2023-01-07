@@ -56,6 +56,7 @@ public class CheckingAccount extends AbstractAccount {
         }
     }
 
+	// TODO - Exercise 3 - Eliminate the tagged classes and refactor
 	public double maximumAmountToWithdraw(){
 		return getBalance() + overdraft;
 	}
